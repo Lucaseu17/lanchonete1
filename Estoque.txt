@@ -1,0 +1,5 @@
+1 Cocacola   3.00 40
+2 guarana    3.00 37
+3 Fanta      3.00 25 
+4 skolLata   2.50 79
+5 brahmaLata 3.00 68
