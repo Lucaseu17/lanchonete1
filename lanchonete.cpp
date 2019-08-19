@@ -29,6 +29,7 @@ bool ProcuraPedido(int numPed, char nomePed[50], float &preco)
     int numPedLido;
     float precoLido;
 
+
     FILE *arquivo;
 
     arquivo = fopen("Cardapio.txt", "r");
@@ -55,8 +56,8 @@ bool ProcuraPedido(int numPed, char nomePed[50], float &preco)
 int main()
 {
     char nomePed[50];
-    float preco;
-    int pedido, dia = 1;
+    float preco, faturamentTot=0;
+    int pedido, dia = 1, i=1, j;
 
     while (dia != 0)
     {
@@ -71,12 +72,23 @@ int main()
             cout << "Preco: " << preco << "\n";
         }
 
+        produto[i].idProduto = pedido;
+        strcpy(produto[i].nomeDoProduto,nomePed);
+        produto[i].preco = preco;
+        i++;
+        faturamentTot += preco;
         cout << "Finalizar dia? [1]Nao [0]Sim" << endl;
         cin >> dia;
     }
 
+
+
+
     cout << "Lista de vendas diaria:"
          << "\n";
-
+    for(j=1; j<i; j++){
+    cout << produto[j].idProduto << "  " <<produto[j].nomeDoProduto << "  " << produto[j].preco << endl;
+    }
+    cout << "faturamento do dia: " << faturamentTot <<endl;
     return 0;
 }
