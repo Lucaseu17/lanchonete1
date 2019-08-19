@@ -1,0 +1,5 @@
+1 risole 2.00
+2 coxinha 2.00
+3 bolinhoDeCarne 2.00
+4 PorçãoBatata 20.00
+5 PorçãoCalabresa 21.50

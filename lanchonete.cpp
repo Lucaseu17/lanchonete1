@@ -3,9 +3,9 @@
 
 using namespace std;
 
-bool ProcuraPedido(int numPed, string nomePed, float &preco)
+bool ProcuraPedido(int numPed, char nomePed[50], float &preco)
 {
-    string pedidoLido;
+    char pedidoLido[50];
     int numPedLido;
     float precoLido;
 
@@ -15,11 +15,13 @@ bool ProcuraPedido(int numPed, string nomePed, float &preco)
 
     while (!feof(arquivo))
     {
-        fscanf(arquivo, "%d %s %f\n", &numPedLido, pedidoLido, &precoLido);
+        fscanf(arquivo, "%d %s %f\n", &numPedLido, &pedidoLido, &precoLido);
         if (numPedLido == numPed)
         {
-            pedidoLido = nomePed;
+            strcpy(nomePed, pedidoLido);
+            //nomePed = pedidoLido ;
             preco = precoLido;
+            fclose(arquivo);
             return true;
         }
     }
@@ -28,22 +30,44 @@ bool ProcuraPedido(int numPed, string nomePed, float &preco)
     return false;
 }
 
+//void faturamentoDiario()
+
+
 int main()
 {
-    string nomePed;
+    char nomePed[50];
     float preco;
-    int pedido;
+    int pedido, dia=1;
+    struct listaDia{
+        int numero;
+        char pedido;
+        float preco;
+    };
 
+
+    while(dia != 0){
     cout << "Digite o numero do pedido: "
-         << "\n"
          << endl;
+
     cin >> pedido;
+
 
     if (ProcuraPedido(pedido, nomePed, preco))
     {
         cout << "PEDIDO: " << nomePed << "\n";
         cout << "Preco: " << preco << "\n";
     }
+
+
+
+
+    cout <<"Finalizar dia? [1]Nao [0]Sim"<<endl;
+    cin >> dia;
+    }
+
+    cout << "Lista de vendas diaria:" << "\n";
+
+
 
     return 0;
 }
