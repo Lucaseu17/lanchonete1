@@ -18,7 +18,7 @@ bool ProcuraPedido(int numPed, string nomePed, float &preco)
         fscanf(arquivo, "%d %s %f\n", &numPedLido, pedidoLido, &precoLido);
         if (numPedLido == numPed)
         {
-            strcpy(pedidoLido, nomePed);
+            pedidoLido = nomePed;
             preco = precoLido;
             return true;
         }
