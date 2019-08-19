@@ -1,0 +1,6 @@
+Lista de vendas diaria: 
+2  coxinha  R$2.00
+5  PorcaoCalabresa  R$21.50
+3  bolinhoDeCarne  R$2.00
+5  PorcaoCalabresa  R$21.50
+faturamento do dia: R$47.000000
