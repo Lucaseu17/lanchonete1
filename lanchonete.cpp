@@ -3,6 +3,97 @@
 using namespace std;
 using namespace std::chrono;
 
+struct estruturaDoEstoque{
+    int id;
+    char nomProduto[100];
+    float precoDeCusto;
+    int quantidadeRestante;
+}estoque[1000];
+
+//
+//void fazEstoque(int N, char produto[50], float precoDeC, int quantid){
+
+void alteraEstoque(int ID, int uni){  //entra com o numero do pedido e com o numero de unidades
+    int r = 0, id, quant, aux;
+    char prod[50];
+    float precoDeCusto;
+
+    FILE *arquivo5;
+
+    arquivo5 = fopen("Estoque.txt", "r");
+
+    while(!feof(arquivo5))
+    {                            // guarda os dados do arquivo na struct estoque
+    fscanf(arquivo5,"%d %s %f %d",&id, &prod, &precoDeCusto, &quant);
+
+    estoque[r].id = id;
+    strcpy(estoque[r].nomProduto, prod);
+    estoque[r].precoDeCusto = precoDeCusto;
+    estoque[r].quantidadeRestante = quant;
+    r++;
+
+    }
+
+    fclose(arquivo5);
+
+    aux = estoque[ID].quantidadeRestante;       //altera a quantidade do produto com o ID do pedido feito
+    estoque[ID].quantidadeRestante = aux - uni;
+
+    FILE* arquivo3;
+
+        arquivo3 = fopen("Estoque1.txt", "w");
+
+    for (int t=0; t<r; t++){                  // copia a struct estoque em um novo arquivo com a alteracao
+    fprintf(arquivo3,"%d",estoque[t].id);
+    fprintf(arquivo3,"  ");
+    fprintf(arquivo3,"%s",estoque[t].nomProduto);
+    fprintf(arquivo3,"  R$");
+    fprintf(arquivo3,"%.2f",estoque[t].precoDeCusto);
+    fprintf(arquivo3,"  ");
+    fprintf(arquivo3,"%d",estoque[t].quantidadeRestante);
+    fprintf(arquivo3,"\n");
+    }
+
+    fclose(arquivo3);
+//        for(int u=1; u<i; u++){
+//            cout << setw(4)<<left<< estoque[j].id << "  " <<
+//                    setw(17)<<left<< estoque[j].nomProduto <<"  " <<
+//                    setw(3)<<left<< "  R$" << estoque[j].precoDeCusto <<"  "<<
+//                    setw(4)<< left << estoque[j].quantidadeRestante << endl;
+
+//    fprintf(arquivo3,"%d",estoque[r].id);
+//    fprintf(arquivo3,"  ");
+//    fprintf(arquivo3,"%s",estoque[r].nomProduto);
+//    fprintf(arquivo3,"  R$");
+//    fprintf(arquivo3,"%.2f",estoque[r].precoDeCusto);
+//    fprintf(arquivo3,"  ");
+//    fprintf(arquivo3,"%d",estoque[r].quantidadeRestante);
+//    fprintf(arquivo3,"\n");
+}
+
+//void alteraEstoque(int ID, int uni){
+//    int aux;
+//
+//    aux = estoque[ID].quantidadeRestante
+//    estoque[ID].quantidadeRestante = aux - uni;
+//
+//    FILE *arquivo3;
+//
+//        arquivo3 = fopen("estoque.txt", "w");
+//
+//    for (int t=0, t != NULL, t++){
+//    fprintf(arquivo3,"%d",estoque[t].id);
+//    fprintf(arquivo3,"  ");
+//    fprintf(arquivo3,"%s",estoque[t].nomProduto);
+//    fprintf(arquivo3,"  R$");
+//    fprintf(arquivo3,"%.2f",estoque[t].precoDeCusto);
+//    fprintf(arquivo3,"  ");
+//    fprintf(arquivo3,"%d",estoque[t].quantidadeRestante);
+//    fprintf(arquivo3,"\n");
+//    }
+//}
+
+
 struct estruturaDoProduto
 {
     char nomeDoProduto[50];
@@ -61,43 +152,27 @@ void mostrarEstoque(){
     char prod[50];
     float precoDeCusto;
 
- FILE *arquivo;
+ FILE *arquivo3;
 
-    arquivo = fopen("Estoque.txt", "r");
+    arquivo3 = fopen("Estoque1.txt", "r");
     cout <<setw(3) << left << "id" <<  "  "<<
            setw(15)<< left << "produto"<< "  " <<
            setw(15)<< left << "preco de Custo" << "  " <<
            setw(10)<< left << "quantidade" << "\n" << endl;
-    while(!feof(arquivo)){
-    fscanf(arquivo,"%d %s %f %d",&id, &prod, &precoDeCusto, &quant);
+
+    while(!feof(arquivo3)){
+    fscanf(arquivo3,"%d %s %f %d",&id, &prod, &precoDeCusto, &quant);
 
     cout << setw(3)<< left << id << "  " <<
            setw(15)<< left << prod << "  R$" <<
            setw(15)<< left << precoDeCusto << "  " <<
            setw(10)<< left << quant << endl;
     }
+    fclose(arquivo3);
 }
 
 
-void alteraEstoque(int numProd, int uni){
-    int id, quant, q;
-    char prod[50];
-    float precoDeCusto;
 
- FILE *arquivo;
-
-    arquivo = fopen("Estoque.txt", "a");
-
-    {
-        fscanf(arquivo,"%d %s %f %d",&id, &prod, &precoDeCusto, &quant);
-
-            if(id==numProd){
-                q = quant - uni;
-                fprintf(arquivo,"%d",q);
-            }
-    }
-
-}
 
 int main()
 {
@@ -126,8 +201,9 @@ int main()
             k++;
             precoTot = preco*unidade;
             cout << "\n\n" << "Preco: R$" << precoTot << "\n\n";
-//            if(pedido <= 5)
-                alteraEstoque(pedido, unidade);
+
+            alteraEstoque(pedido,unidade);
+//                cout << "estoque alterado"<<endl;
         }else{
             cout <<"Pedido nao encontrado \n" <<endl;
         }
@@ -145,6 +221,8 @@ int main()
         cin >> sim;
         cout <<"\n";
     }
+
+
 
     FILE *arquivo2;
 
@@ -179,14 +257,18 @@ int main()
     fprintf(arquivo2,"\n");
     }
 
-    cout <<"\n"<<setw(48)<< "faturamento do dia: " << "R$" << faturamentTot << "\n" << endl;
+    cout << "\n" <<setw(48)<< "faturamento do dia: " << "R$" << faturamentTot << "\n" << endl;
 
     fprintf(arquivo2,"faturamento do dia: R$");
     fprintf(arquivo2,"%.2f",faturamentTot);
 
+    fclose(arquivo2);
+
     cout << "Mostrar estoque?     [1]Sim [0]Nao" <<endl;
     cin >> sim;
     cout << "\n";
+
+
 
     if(sim == 1){
         mostrarEstoque();
