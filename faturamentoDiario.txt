@@ -1,4 +1,4 @@
 Lista de vendas diaria: 
-1  Cocacola  R$50.00
-2  guarana  R$50.00
-faturamento do dia: R$100.00
+2  guarana  R$15.00
+2  guarana  R$15.00
+faturamento do dia: R$30.00
