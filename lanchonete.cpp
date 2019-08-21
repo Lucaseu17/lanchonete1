@@ -18,43 +18,43 @@ void alteraEstoque(int ID, int uni){  //entra com o numero do pedido e com o num
     char prod[50];
     float precoDeCusto;
 
-    FILE *arquivo5;
+    FILE *arquivo3;
 
-    arquivo5 = fopen("Estoque.txt", "r");
+    arquivo3 = fopen("Estoque.txt", "r");
 
-    while(!feof(arquivo5))
+    while(!feof(arquivo3))
+//    while(fscanf(arquivo3, "%d %s %f %d ", &id, &prod, &precoDeCusto, &quant) != NULL)
     {                            // guarda os dados do arquivo na struct estoque
-    fscanf(arquivo5,"%d %s %f %d",&id, &prod, &precoDeCusto, &quant);
+    fscanf(arquivo3, "%d %s %f %d \n", &id, &prod, &precoDeCusto, &quant);
 
     estoque[r].id = id;
     strcpy(estoque[r].nomProduto, prod);
     estoque[r].precoDeCusto = precoDeCusto;
     estoque[r].quantidadeRestante = quant;
     r++;
-
     }
 
-    fclose(arquivo5);
+    fclose(arquivo3);
 
     aux = estoque[ID].quantidadeRestante;       //altera a quantidade do produto com o ID do pedido feito
     estoque[ID].quantidadeRestante = aux - uni;
 
-    FILE* arquivo3;
+    FILE* arquivo5;
 
-        arquivo3 = fopen("Estoque1.txt", "w");
+        arquivo5 = fopen("Estoque.txt", "w+");
 
     for (int t=0; t<r; t++){                  // copia a struct estoque em um novo arquivo com a alteracao
-    fprintf(arquivo3,"%d",estoque[t].id);
-    fprintf(arquivo3,"  ");
-    fprintf(arquivo3,"%s",estoque[t].nomProduto);
-    fprintf(arquivo3,"  R$");
-    fprintf(arquivo3,"%.2f",estoque[t].precoDeCusto);
-    fprintf(arquivo3,"  ");
-    fprintf(arquivo3,"%d",estoque[t].quantidadeRestante);
-    fprintf(arquivo3,"\n");
+    fprintf(arquivo5,"%d",estoque[t].id);
+    fprintf(arquivo5,"  ");
+    fprintf(arquivo5,"%s",estoque[t].nomProduto);
+    fprintf(arquivo5,"  R$");
+    fprintf(arquivo5,"%.2f",estoque[t].precoDeCusto);
+    fprintf(arquivo5,"  ");
+    fprintf(arquivo5,"%d",estoque[t].quantidadeRestante);
+    fprintf(arquivo5,"\n");
     }
 
-    fclose(arquivo3);
+    fclose(arquivo5);
 //        for(int u=1; u<i; u++){
 //            cout << setw(4)<<left<< estoque[j].id << "  " <<
 //                    setw(17)<<left<< estoque[j].nomProduto <<"  " <<
@@ -154,19 +154,22 @@ void mostrarEstoque(){
 
  FILE *arquivo3;
 
-    arquivo3 = fopen("Estoque1.txt", "r");
+    arquivo3 = fopen("Estoque.txt", "r");
     cout <<setw(3) << left << "id" <<  "  "<<
            setw(15)<< left << "produto"<< "  " <<
            setw(15)<< left << "preco de Custo" << "  " <<
            setw(10)<< left << "quantidade" << "\n" << endl;
 
-    while(!feof(arquivo3)){
-    fscanf(arquivo3,"%d %s %f %d",&id, &prod, &precoDeCusto, &quant);
+    while(!feof(arquivo3))
+    {
+    fscanf(arquivo3,"%d %s %f %d \n",&id, &prod, &precoDeCusto, &quant);
 
     cout << setw(3)<< left << id << "  " <<
            setw(15)<< left << prod << "  R$" <<
            setw(15)<< left << precoDeCusto << "  " <<
            setw(10)<< left << quant << endl;
+    fclose(arquivo3);
+
     }
     fclose(arquivo3);
 }

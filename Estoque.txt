@@ -1,5 +1,1 @@
-1  Cocacola  R$3.00  40
-2  guarana  R$3.00  40
-3  Fanta  R$3.00  40
-4  skolLata  R$2.50  40
-5  brahmaLata  R$3.00  40
+1  Cocacola  R$147812469875993190000000000000.00  2147344384
