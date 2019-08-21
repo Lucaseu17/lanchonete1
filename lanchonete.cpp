@@ -20,9 +20,9 @@ void alteraEstoque(int ID, int uni)
     char prod[50];
     float precoDeCusto;
 
-    FILE *arquivo5;
+    FILE *arquivo3;
 
-    arquivo5 = fopen("Estoque.txt", "r");
+    arquivo3 = fopen("Estoque.txt", "r");
 
     while (fscanf(arquivo5, "%d %s %f %d", &id, prod, &precoDeCusto, &quant))
     { // guarda os dados do arquivo na struct estoque
@@ -34,7 +34,7 @@ void alteraEstoque(int ID, int uni)
         r++;
     }
 
-    fclose(arquivo5);
+    fclose(arquivo3);
 
     aux = estoque[ID].quantidadeRestante; //altera a quantidade do produto com o ID do pedido feito
     estoque[ID].quantidadeRestante = aux - uni;
