@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#define TamESTOQUE 3
+#define TamESTOQUE 8
 
 using namespace std;
 using namespace std::chrono;
@@ -15,6 +15,9 @@ struct estruturaDoEstoque
 //
 //void fazEstoque(int N, char produto[50], float precoDeC, int quantid){
 
+
+
+
 void alteraEstoque(int ID, int uni)
 { //entra com o numero do pedido e com o numero de unidades
     int r = 0, id, quant, aux, e=10;
@@ -22,15 +25,17 @@ void alteraEstoque(int ID, int uni)
     float precoDeCusto;
     struct estruturaDoEstoque;
 
+    if(ID <= TamESTOQUE){
+
     FILE *arquivo5;
 
     arquivo5 = fopen("Estoque.txt", "r");
 
 ////
-    while (r<TamESTOQUE)
+    while (r < TamESTOQUE)
     { // guarda os dados do arquivo na struct estoque
 
-        cout << "oi ";
+
         fscanf(arquivo5, "%d %s %f %d", &id, &prod, &precoDeCusto, &quant);
         estoque[id].id = id;
         strcpy(estoque[id].nomProduto, prod);
@@ -64,43 +69,10 @@ void alteraEstoque(int ID, int uni)
     }
 
     fclose(arquivo3);
-    //        for(int u=1; u<i; u++){
-    //            cout << setw(4)<<left<< estoque[j].id << "  " <<
-    //                    setw(17)<<left<< estoque[j].nomProduto <<"  " <<
-    //                    setw(3)<<left<< "  R$" << estoque[j].precoDeCusto <<"  "<<
-    //                    setw(4)<< left << estoque[j].quantidadeRestante << endl;
-
-    //    fprintf(arquivo3,"%d",estoque[r].id);
-    //    fprintf(arquivo3,"  ");
-    //    fprintf(arquivo3,"%s",estoque[r].nomProduto);
-    //    fprintf(arquivo3,"  R$");
-    //    fprintf(arquivo3,"%.2f",estoque[r].precoDeCusto);
-    //    fprintf(arquivo3,"  ");
-    //    fprintf(arquivo3,"%d",estoque[r].quantidadeRestante);
-    //    fprintf(arquivo3,"\n");
+    }
 }
 
-//void alteraEstoque(int ID, int uni){
-//    int aux;
-//
-//    aux = estoque[ID].quantidadeRestante
-//    estoque[ID].quantidadeRestante = aux - uni;
-//
-//    FILE *arquivo3;
-//
-//        arquivo3 = fopen("estoque.txt", "w");
-//
-//    for (int t=0, t != NULL, t++){
-//    fprintf(arquivo3,"%d",estoque[t].id);
-//    fprintf(arquivo3,"  ");
-//    fprintf(arquivo3,"%s",estoque[t].nomProduto);
-//    fprintf(arquivo3,"  R$");
-//    fprintf(arquivo3,"%.2f",estoque[t].precoDeCusto);
-//    fprintf(arquivo3,"  ");
-//    fprintf(arquivo3,"%d",estoque[t].quantidadeRestante);
-//    fprintf(arquivo3,"\n");
-//    }
-//}
+
 
 struct estruturaDoProduto
 {

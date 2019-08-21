@@ -1,9 +1,8 @@
-1 Cocacola 3.00 40
-2 guarana 3.00 40
-3 Fanta 3.00 40
-4 skolLata 2.50 80
-5 brahmaLata 4.50 80
-6 risole 1.00 30
-7 coxinha 1.00 30
-8 bolinhoDeCarne 1.00 30
-
+1  Cocacola  3.000000  16
+2  guarana  3.000000  -2
+3  Fanta  3.000000  26
+4  skolLata  2.500000  31
+5  brahmaLata  2.500000  76
+6  risole  1.000000  10
+7  coxinha  1.000000  26
+8  bolinhoDeCarne  1.000000  30

@@ -1,3 +1,20 @@
 Lista de vendas diaria: 
-1  Cocacola  R$50.00
-faturamento do dia: R$50.00
+1  Cocacola  R$5.00
+1  Cocacola  R$5.00
+1  Cocacola  R$5.00
+1  Cocacola  R$5.00
+1  Cocacola  R$5.00
+1  Cocacola  R$5.00
+1  Cocacola  R$5.00
+1  Cocacola  R$5.00
+1  Cocacola  R$5.00
+1  Cocacola  R$5.00
+1  Cocacola  R$5.00
+2  guarana  R$5.00
+2  guarana  R$5.00
+2  guarana  R$5.00
+2  guarana  R$5.00
+3  Fanta  R$10.00
+4  skolLata  R$153.00
+2  guarana  R$115.00
+faturamento do dia: R$353.00
